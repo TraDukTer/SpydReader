@@ -10,10 +10,16 @@ def draw_fill(fill_char: str =" ", bg_char: str =None):
     frame = [[fill_char for i in range(width)] for i in range(height)]
 
 def draw_row(char: str, ypos: int, start: int =0, end: int =-1):
-    pass
+    global frame
+    if end == -1:
+        end = len(frame[ypos]) - 1
+    frame[ypos] = [char for i in range (start, end)]
 
 def draw_column(char: str, xpos: int, start: int =0, end: int =-1):
-    pass
+    global frame
+    if end == -1:
+        end = len(frame[ypos]) - 1
+    #implement list comprehension
 
 def draw_char(char: str, xpos: int, ypos: int):
     global frame
@@ -27,6 +33,7 @@ def set_resolution(new_width: int, new_height: int):
     height = new_height
 
 def draw_borders():
+    draw_column("|", 0)
     draw_char("╔", 0, 0)
     draw_char("╗", 0, -1)
     draw_char("╚", -1, 0)
