@@ -4,10 +4,16 @@ width = 72 #x coordinate space
 height = 20 #y coordinate space
 frame = [[]] #width, NB! the x array will contain an array of chars x once anything is drawn
 
-def draw_fill(fill_char: str =" ", bg: bool =False, bg_char: str =None):
+def draw_fill(fill_char: str =" ", bg_char: str =None):
     global frame
 
     frame = [[fill_char for i in range(width)] for i in range(height)]
+
+def draw_row(char: str, ypos: int, start: int =0, end: int =-1):
+    pass
+
+def draw_column(char: str, xpos: int, start: int =0, end: int =-1):
+    pass
 
 def draw_char(char: str, xpos: int, ypos: int):
     global frame
