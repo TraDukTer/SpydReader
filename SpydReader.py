@@ -1,16 +1,20 @@
 import os
 
-width = 64 #x coordinate space
-height = 40 #y coordinate space
+width = 20 #x coordinate space
+height = 72 #y coordinate space
 frame = [[]] #width, NB! the x array will contain an array of chars x once anything is drawn
 
 def draw_fill(fill_char: str =" ", bg: bool =False, bg_char: str =None):
     global frame
-    frame = [[fill_char]*height]*width
+    # row = [fill_char]*height
+    # column = [row[:]]
+    # frame = column[:]*width
+
+    frame = [[fill_char for i in range(height)] for i in range(width)]
 
 def draw_char(char: str, xpos: int, ypos: int):
     global frame
-    pass
+    frame[ypos][xpos] = char
 
 def set_resolution(new_width: int, new_height: int):
     global width
@@ -29,7 +33,7 @@ def refresh():
             print(char, end="")
         print("")
 
-set_resolution(20, 72)
+
 draw_fill("#")
 draw_char("@", 3, 6)
 refresh()
