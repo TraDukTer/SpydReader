@@ -1,5 +1,6 @@
 import os
 import time
+import re
 
 width = 72 #x coordinate space
 height = 20 #y coordinate space
@@ -26,7 +27,17 @@ def draw_column(char: str, xpos: int, start: int =0, end: int =-1):
 
 def draw_char(char: str, xpos: int, ypos: int):
     global frame
-    frame[xpos][ypos] = char
+    frame[ypos][xpos] = char
+
+def print_center(string: str):
+    ycen = height // 2
+    xcen = width // 2
+    string_start = xcen - (len(string) // 2)
+
+    i = 0
+    for char in string:
+        draw_char(char, string_start + i, ycen)
+        i += 1
 
 def set_resolution(new_width: int, new_height: int):
     global width
@@ -41,8 +52,8 @@ def draw_borders():
     draw_row("═", 0)
     draw_row("═", height - 1)
     draw_char("╔", 0, 0)
-    draw_char("╗", 0, -1)
-    draw_char("╚", -1, 0)
+    draw_char("╗", -1, 0)
+    draw_char("╚", 0, -1)
     draw_char("╝", -1, -1)
 
 def refresh():
@@ -52,7 +63,15 @@ def refresh():
             print(char, end="")
         print("")
 
+text = input("Input string to speedread: ")
+text = re.split(" |\n", text)
+print(text[0])
+time.sleep(2)
+
 draw_fill(" ")
 draw_borders()
-draw_char("#", 1, 2)
-refresh()
+for word in text:
+    print_center(word)
+    refresh()
+    time.sleep(0.02)
+    print_center(" " * len(word))
