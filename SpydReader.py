@@ -65,7 +65,26 @@ def refresh():
     os.system('cls')
     print(frame_str)
 
-text = input("Input string to speedread: ")
+def input_loop() -> str:
+    command = input("To input string to speedread as text, press enter. To read from file, input filename: ")
+    if command == "":
+        text = input("Input string to speedread: ")
+    else:
+        while True:
+            try:
+                file = open(command, "r", encoding="utf8")
+                text = file.read()
+                file.close()
+                break
+            except FileNotFoundError:
+                command = input("Input .txt filename with file extension. File must be in the same directory as SpydReader:")
+            i += 1
+    
+    return text
+        
+
+        
+text = input_loop()
 text = re.split(" |\n", text)
 draw_fill(" ")
 draw_borders()
