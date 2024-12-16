@@ -57,21 +57,20 @@ def draw_borders():
     draw_char("╝", -1, -1)
 
 def refresh():
+    frame_str = ""
+    for row in frame:
+        for char in row:
+            frame_str += char
+        frame_str += "\n"
     os.system('cls')
-    for y in frame:
-        for char in y:
-            print(char, end="")
-        print("")
+    print(frame_str)
 
 text = input("Input string to speedread: ")
 text = re.split(" |\n", text)
-print(text[0])
-time.sleep(2)
-
 draw_fill(" ")
 draw_borders()
 for word in text:
     print_center(word)
     refresh()
-    time.sleep(0.02)
+    time.sleep(0.1)
     print_center(" " * len(word))
