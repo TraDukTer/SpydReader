@@ -66,7 +66,7 @@ def refresh():
     print(frame_str)
 
 def input_loop() -> str:
-    command = input("To input string to speedread as text, press enter. To read from file, input filename: ")
+    command = input("To input string to speedread as text, press enter. \nTo read from file, input filename: ")
     if command == "":
         text = input("Input string to speedread: ")
     else:
@@ -81,15 +81,17 @@ def input_loop() -> str:
             i += 1
     
     return text
-        
 
-        
+def display_loop(text: str):
+    text = re.split(" |\n", text)
+    draw_fill(" ")
+    draw_borders()
+    for word in text:
+        print_center(word)
+        refresh()
+        time.sleep(0.1)
+        print_center(" " * len(word))
+
 text = input_loop()
-text = re.split(" |\n", text)
-draw_fill(" ")
-draw_borders()
-for word in text:
-    print_center(word)
-    refresh()
-    time.sleep(0.1)
-    print_center(" " * len(word))
+display_loop(text)
+
