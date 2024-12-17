@@ -78,7 +78,6 @@ def input_loop() -> str:
                 break
             except FileNotFoundError:
                 command = input("Input .txt filename with file extension. File must be in the same directory as SpydReader:")
-            i += 1
     
     return text
 
