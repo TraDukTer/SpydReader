@@ -1,5 +1,6 @@
 # local input files
 input.txt
+Input/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

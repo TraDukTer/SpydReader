@@ -1,6 +1,8 @@
 import os
 import time
 import re
+import threading
+import keyboard
 
 width = 72 #x coordinate space
 height = 20 #y coordinate space
@@ -72,12 +74,11 @@ def input_loop() -> str:
     else:
         while True:
             try:
-                file = open(command, "r", encoding="utf8")
-                text = file.read()
-                file.close()
+                with open(f"Input/{command}", "r", encoding="utf8") as file:
+                    text = file.read()
                 break
             except FileNotFoundError:
-                command = input("Input .txt filename with file extension. File must be in the same directory as SpydReader:")
+                command = input("Input .txt filename with file extension. File must be in the SpydReader Input folder:")
     
     return text
 
