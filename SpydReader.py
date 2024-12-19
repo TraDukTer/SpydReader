@@ -7,6 +7,9 @@ import keyboard
 width = 72 #x coordinate space
 height = 20 #y coordinate space
 frame = [[]] #width, NB! the x array will contain an array of chars x once anything is drawn
+paused = False
+delay = 0.1
+done = False
 
 def draw_fill(fill_char: str =" ", bg_char: str =None):
     global frame
@@ -18,12 +21,13 @@ def draw_row(char: str, ypos: int, start: int =0, end: int =-1):
     if end == -1:
         end = width
     frame[ypos] = [char for i in range (start, end)]
+#    frame[ypos] = char*(end-start)
 
 def draw_column(char: str, xpos: int, start: int =0, end: int =-1):
     global frame
     if end == -1:
         end = height - 1
-    #implement list comprehension
+    
     for row in frame:
         row[xpos] = char
 
@@ -39,6 +43,12 @@ def print_center(string: str):
     i = 0
     for char in string:
         draw_char(char, string_start + i, ycen)
+        i += 1
+
+def print_starting(string: str, startingx: int, startingy: int):
+    i = 0
+    for char in string:
+        draw_char(char, startingx + i, startingy)
         i += 1
 
 def set_resolution(new_width: int, new_height: int):
@@ -83,15 +93,37 @@ def input_loop() -> str:
     return text
 
 def display_loop(text: str):
+    global done
     text = re.split(" |\n", text)
     draw_fill(" ")
     draw_borders()
-    for word in text:
-        print_center(word)
-        refresh()
-        time.sleep(0.1)
-        print_center(" " * len(word))
+    while not paused:
+        for word in text:
+            print_center(word)
+            refresh()
+            time.sleep(delay)
+            print_center(" " * len(word))
+            print_starting(f"delay: {str(delay)}s", 3, height - 3)
+        done = True
 
 text = input_loop()
-display_loop(text)
+display_thread = threading.Thread(target = display_loop(text), name = "display_thread")
+display_thread.start()
+
+while not done:
+    if keyboard.is_pressed('space'):
+        if not paused:
+            paused = True
+            display_thread.wait()
+        else:
+            paused = False
+            display_thread.notify()
+    if keyboard.is_pressed('up arrow'):
+        if delay <= 0.01:
+            delay -= 0.01
+    if keyboard.is_pressed('down arrow'):
+        delay += 0.01
+
+display_thread.join()
+
 
