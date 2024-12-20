@@ -21,7 +21,7 @@ def draw_row(char: str, ypos: int, start: int =0, end: int =-1):
     if end == -1:
         end = width
     frame[ypos] = [char for i in range (start, end)]
-#    frame[ypos] = char*(end-start)
+#   TODO frame[ypos] = char*(end-start)
 
 def draw_column(char: str, xpos: int, start: int =0, end: int =-1):
     global frame
