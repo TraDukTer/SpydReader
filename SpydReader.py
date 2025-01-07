@@ -3,13 +3,18 @@ import time
 import re
 import threading
 import keyboard
+import traceback
+
+class globalVars():
+    pass
 
 width = 72 #x coordinate space
 height = 20 #y coordinate space
-frame = [[]] #width, NB! the x array will contain an array of chars x once anything is drawn
-paused = False
-delay = 0.1
-done = False
+frame = [[]] #width, NB! the y array will contain an array of chars x once anything is draw
+gvars = globalVars()
+gvars.delay = 0.1
+gvars.running = threading.Condition()
+gvars.paused = False
 
 def draw_fill(fill_char: str =" ", bg_char: str =None):
     global frame
@@ -89,41 +94,63 @@ def input_loop() -> str:
                 break
             except FileNotFoundError:
                 command = input("Input .txt filename with file extension. File must be in the SpydReader Input folder:")
+                continue
     
     return text
 
 def display_loop(text: str):
-    global done
     text = re.split(" |\n", text)
     draw_fill(" ")
     draw_borders()
-    while not paused:
-        for word in text:
-            print_center(word)
-            refresh()
-            time.sleep(delay)
-            print_center(" " * len(word))
-            print_starting(f"delay: {str(delay)}s", 3, height - 3)
-        done = True
+    for word in text:
+        with gvars.running:
+            while gvars.paused:
+                gvars.running.wait()
+        print_center(word)
+        refresh()
+        time.sleep(gvars.delay)
+        print_center(" " * len(word))
+        print_starting(f"delay: {str(gvars.delay)}s", 3, height - 3)
+
+def control_loop():
+# TODO: something blocks keyboard interrupt.
+    while display_thread.is_alive:
+        try: 
+            if keyboard.is_pressed('space'):
+                if gvars.paused:
+                    time.sleep(0.1)
+                    gvars.paused = False
+                    print("unpaused")
+                    gvars.running.release()
+                    gvars.running.notify()
+                elif not gvars.paused:
+                    gvars.running.acquire()
+                    gvars.paused = True
+                    print("paused")
+                    time.sleep(0.1)
+                    continue
+            if keyboard.is_pressed('up arrow'):
+                
+                if gvars.delay > 0.01:
+                    gvars.delay -= 0.01
+                time.sleep(0.1)
+            if keyboard.is_pressed('down arrow'):
+                gvars.delay += 0.01
+                time.sleep(0.1)
+        except Exception:
+            with open("log.txt", "a") as logfile:
+                logfile.write(str(traceback.format_exc()) + "\n\n")
+
 
 text = input_loop()
-display_thread = threading.Thread(target = display_loop(text), name = "display_thread")
+print(len(text))
+display_thread = threading.Thread(target = display_loop, args = (text, ))
+control_thread = threading.Thread(target = control_loop)
 display_thread.start()
-
-while not done:
-    if keyboard.is_pressed('space'):
-        if not paused:
-            paused = True
-            display_thread.wait()
-        else:
-            paused = False
-            display_thread.notify()
-    if keyboard.is_pressed('up arrow'):
-        if delay <= 0.01:
-            delay -= 0.01
-    if keyboard.is_pressed('down arrow'):
-        delay += 0.01
+control_thread.start()
 
 display_thread.join()
+control_thread.join()
+
 
 

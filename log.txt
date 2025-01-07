@@ -1,0 +1,1170 @@
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 123, in control_loop
+    gvars.running.release()
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 124, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 124, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 124, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 124, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 124, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 124, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
+Traceback (most recent call last):
+  File "c:\repositories\SpydReader\SpydReader.py", line 124, in control_loop
+    gvars.running.notify()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\TraDukTet\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 409, in notify
+    raise RuntimeError("cannot notify on un-acquired lock")
+RuntimeError: cannot notify on un-acquired lock
+
+
