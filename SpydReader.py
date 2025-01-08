@@ -1,5 +1,6 @@
 import os
 import time
+import datetime
 import re
 import threading
 import keyboard
@@ -82,6 +83,9 @@ def refresh():
     os.system('cls')
     print(frame_str)
 
+def toggle_pause() -> bool:
+    pass
+
 def input_loop() -> str:
     command = input("To input string to speedread as text, press enter. \nTo read from file, input filename: ")
     if command == "":
@@ -115,14 +119,16 @@ def display_loop(text: str):
 def control_loop():
 # TODO: something blocks keyboard interrupt.
     while display_thread.is_alive:
+        keypress = "undefined"
         try: 
             if keyboard.is_pressed('space'):
+                keypress = "space"
                 if gvars.paused:
                     time.sleep(0.1)
                     gvars.paused = False
                     print("unpaused")
-                    gvars.running.release()
                     gvars.running.notify()
+                    gvars.running.release()
                 elif not gvars.paused:
                     gvars.running.acquire()
                     gvars.paused = True
@@ -130,20 +136,26 @@ def control_loop():
                     time.sleep(0.1)
                     continue
             if keyboard.is_pressed('up arrow'):
-                
+                keypress = "up"
                 if gvars.delay >= 11:
                     gvars.delay -= 10
                 elif gvars.delay > 1:
                     gvars.delay -= 1
                 time.sleep(0.1)
             if keyboard.is_pressed('down arrow'):
+                keypress = "down"
                 if gvars.delay < 10:
                     gvars.delay += 1
                 else:
                     gvars.delay += 10
                 time.sleep(0.1)
+            if keyboard.is_pressed('esc'):
+                if not gvars.paused:
+                    pass
         except Exception:
-            with open("log.txt", "a") as logfile:
+            with open("errorlog.txt", "a") as logfile:
+                logfile.write(str(datetime.datetime.now()) + "\n")
+                logfile.write(f"Following exception thrown on keypress {keypress}" + "\n")
                 logfile.write(str(traceback.format_exc()) + "\n\n")
 
 

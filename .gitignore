@@ -1,6 +1,7 @@
 # local input files
 input.txt
 log.txt
+errorlog.txt
 Input/
 
 # Byte-compiled / optimized / DLL files
