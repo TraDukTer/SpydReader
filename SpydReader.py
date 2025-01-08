@@ -12,7 +12,7 @@ width = 72 #x coordinate space
 height = 20 #y coordinate space
 frame = [[]] #width, NB! the y array will contain an array of chars x once anything is draw
 gvars = globalVars()
-gvars.delay = 0.1
+gvars.delay = 100 #delay in milliseconds
 gvars.running = threading.Condition()
 gvars.paused = False
 
@@ -108,9 +108,9 @@ def display_loop(text: str):
                 gvars.running.wait()
         print_center(word)
         refresh()
-        time.sleep(gvars.delay)
+        time.sleep(gvars.delay/1000)
         print_center(" " * len(word))
-        print_starting(f"delay: {str(gvars.delay)}s", 3, height - 3)
+        print_starting(f"delay: {str(gvars.delay)}ms", 3, height - 3)
 
 def control_loop():
 # TODO: something blocks keyboard interrupt.
@@ -131,11 +131,16 @@ def control_loop():
                     continue
             if keyboard.is_pressed('up arrow'):
                 
-                if gvars.delay > 0.01:
-                    gvars.delay -= 0.01
+                if gvars.delay >= 11:
+                    gvars.delay -= 10
+                elif gvars.delay > 1:
+                    gvars.delay -= 1
                 time.sleep(0.1)
             if keyboard.is_pressed('down arrow'):
-                gvars.delay += 0.01
+                if gvars.delay < 10:
+                    gvars.delay += 1
+                else:
+                    gvars.delay += 10
                 time.sleep(0.1)
         except Exception:
             with open("log.txt", "a") as logfile:
