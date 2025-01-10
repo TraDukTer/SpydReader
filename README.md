@@ -21,7 +21,7 @@ As of January 2025, I am developing SpydReader on my own and am not looking for 
 
 1. Input text
 
-SpydReader currently supports input as .txt file and raw text input to the text-based user interface. The .txt file is read into memory in its entirety, so some software limitations to its length apply. The file name can be arbitrary, but the file has to be placed in the /Input folder in the same folder as SpydReader.
+SpydReader currently supports input as .txt file and raw text input to the text-based user interface. The current iteration only works on Windows. The .txt file is read into memory in its entirety, so some software limitations to its length apply. The file name can be arbitrary, but the file has to be placed in the /Input folder in the same folder as SpydReader.
 
 2. Interface
 
@@ -34,7 +34,7 @@ Down arrow: decrease speed of text (increase interval between words shown)
 
 ## 1.2. Known issues
 
-Due to being a work in progress, SpydReader currently blocks keyboard interrupt and does not have a feature to close it without closing it other than closing the terminal instance that ran it.
+Due to being a work in progress, SpydReader currently blocks keyboard interrupt and cannot be closedwithout closing the terminal instance that ran it.
 
 ## 1.3 Planned Features
 
@@ -69,12 +69,14 @@ Due to being a work in progress, SpydReader currently blocks keyboard interrupt 
 
 3. Implementation
 
+- Linux/UNIX support
+- Makefile
 - A standalone .exe (would also allow e.g. packaging Keyboard library)
 
 
 # 2. Requirements
 
-SpydReader uses the [PyPi Keyboard library](https://pypi.org/project/keyboard/), which is not provided with Python installation. To run the source code, you need to install the Keyboard library, e.g. by running `pip install keyboard` in a commandline.
+SpydReader uses the [Keyboard library by Boppreh](https://github.com/boppreh/keyboard), which is not provided with Python installation. To run the source code, you either need to install the Keyboard library, e.g. by running `pip install keyboard` in a commandline or download it, e.g. [via PyPi](https://pypi.org/project/keyboard/).
 
 # 3. License
 
