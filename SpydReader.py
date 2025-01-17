@@ -140,10 +140,11 @@ def toggle_pause() -> bool:
         time.sleep(0.1)
 
 def increase_delay():
-    gvars.delay += 10 if gvars.delay > 10 else 1
+    gvars.delay += 10 if gvars.delay >= 10 else 1
 
 def decrease_delay():
-    gvars.delay -= 10 if gvars.delay > 11 else 1
+    if gvars.delay > 0:
+        gvars.delay -= 10 if gvars.delay > 11 else 1
 
 def set_resolution(new_width: int, new_height: int):
     global width
@@ -202,8 +203,8 @@ def main():
 
     # TODO: catch errors from control functions somehow
     keyboard.add_hotkey('space', toggle_pause)
-    keyboard.add_hotkey('up', increase_delay)
-    keyboard.add_hotkey('down', decrease_delay)
+    keyboard.add_hotkey('up', decrease_delay)
+    keyboard.add_hotkey('down', increase_delay)
     keyboard.add_hotkey('esc', exit)
 
     display_thread.join()
