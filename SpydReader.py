@@ -216,20 +216,23 @@ def control_loop():
 
     log("Control loop end")
 
-log("Program started", headerline = True)
-text = input_loop()
-log(f"Text of length {len(text)} input")
-print(len(text))
+def main():
+    log("Program started", headerline = True)
+    text = input_loop()
+    log(f"Text of length {len(text)} input")
+    print(len(text))
 
-display_thread = threading.Thread(target = display_loop, args = (text, ))
-control_thread = threading.Thread(target = control_loop)
+    display_thread = threading.Thread(target = display_loop, args = (text, ))
+    control_thread = threading.Thread(target = control_loop)
 
-display_thread.start()
-control_thread.start()
-log("Core loop threads started")
+    display_thread.start()
+    control_thread.start()
+    log("Core loop threads started")
 
-display_thread.join()
-control_thread.join()
-log("Core loop threads joined")
+    display_thread.join()
+    control_thread.join()
+    log("Core loop threads joined")
 
+if __name__ == '__main__':
+    main()
 
