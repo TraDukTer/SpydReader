@@ -127,7 +127,23 @@ def errorlog(message):
 # Control utilities
 
 def toggle_pause() -> bool:
-    pass
+    if gvars.paused:
+        time.sleep(0.1)
+        gvars.paused = False
+        print("unpaused")
+        gvars.running.notify()
+        gvars.running.release()
+    elif not gvars.paused:
+        gvars.running.acquire()
+        gvars.paused = True
+        print("paused")
+        time.sleep(0.1)
+
+def increase_delay():
+    gvars.delay += 10 if gvars.delay > 10 else 1
+
+def decrease_delay():
+    gvars.delay -= 10 if gvars.delay > 11 else 1
 
 def set_resolution(new_width: int, new_height: int):
     global width
@@ -181,35 +197,20 @@ def control_loop():
         try: 
             if keyboard.is_pressed('space'):
                 keypress = "space"
-                if gvars.paused:
-                    time.sleep(0.1)
-                    gvars.paused = False
-                    print("unpaused")
-                    gvars.running.notify()
-                    gvars.running.release()
-                elif not gvars.paused:
-                    gvars.running.acquire()
-                    gvars.paused = True
-                    print("paused")
-                    time.sleep(0.1)
-                    continue
+                toggle_pause()
+                continue
             if keyboard.is_pressed('up arrow'):
                 keypress = "up"
-                if gvars.delay >= 11:
-                    gvars.delay -= 10
-                elif gvars.delay > 1:
-                    gvars.delay -= 1
+                decrease_delay()
                 time.sleep(0.1)
             if keyboard.is_pressed('down arrow'):
                 keypress = "down"
-                if gvars.delay < 10:
-                    gvars.delay += 1
-                else:
-                    gvars.delay += 10
+                increase_delay
                 time.sleep(0.1)
             if keyboard.is_pressed('esc'):
                 if not gvars.paused:
-                    pass
+                    toggle_pause()
+                exit()
         except Exception:
             errorlog(f"Following exception thrown on keypress {keypress}\n{str(traceback.format_exc())}\n\n")
 
