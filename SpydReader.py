@@ -39,6 +39,8 @@ gvars.delay = 100 #delay in milliseconds
 gvars.running = threading.Condition()
 gvars.paused = False
 
+# Display and drawing utilities
+
 def draw_fill(fill_char: str =" ", bg_char: str =None):
     global frame
 
@@ -79,13 +81,6 @@ def print_starting(string: str, startingx: int, startingy: int):
         draw_char(char, startingx + i, startingy)
         i += 1
 
-def set_resolution(new_width: int, new_height: int):
-    global width
-    global height
-
-    width = new_width
-    height = new_height
-
 def draw_borders():
     draw_column("║", 0)
     draw_column("║", width - 1)
@@ -105,10 +100,46 @@ def refresh():
     os.system('cls')
     print(frame_str)
 
+# Logging utilities
+
+def log(
+        message: str = "message undefined", 
+        file_name: str = "log.txt", 
+        timestamp: bool = True, 
+        overwrite: bool = False, 
+        headerline: bool = False):
+    #Write mode, default "a"; do not overwrite, write to end of file
+    open_text_mode = "a"
+    if overwrite:
+        open_text_mode = "w"
+    with open(file_name, open_text_mode) as logfile:
+        #Write line of pound signs as a header to mark out an important line, if active
+        if headerline:
+            logfile.write("###############\n")
+        #Write timestamp before the log message, if active (default active)
+        if timestamp:
+            logfile.write(str(datetime.datetime.now()) + "\n")
+        logfile.write(message+"\n\n")
+
+def errorlog(message):
+    log(message, "errorlog.txt")
+
+# Control utilities
+
 def toggle_pause() -> bool:
     pass
 
+def set_resolution(new_width: int, new_height: int):
+    global width
+    global height
+
+    width = new_width
+    height = new_height
+
+# Core functionality
+
 def input_loop() -> str:
+    log("Input loop start")
     command = input("To input string to speedread as text, press enter. \nTo read from file, input filename: ")
     if command == "":
         text = input("Input string to speedread: ")
@@ -122,9 +153,11 @@ def input_loop() -> str:
                 command = input("Input .txt filename with file extension. File must be in the SpydReader Input folder:")
                 continue
     
+    log("Input loop end")
     return text
 
 def display_loop(text: str):
+    log("Display loop start")
     text = re.split(" |\n", text)
     draw_fill(" ")
     draw_borders()
@@ -138,8 +171,11 @@ def display_loop(text: str):
         print_center(" " * len(word))
         print_starting(f"delay: {str(gvars.delay)}ms", 3, height - 3)
 
+    log("Display loop end")
+
 def control_loop():
 # TODO: something blocks keyboard interrupt.
+    log("Control loop start")
     while display_thread.is_alive:
         keypress = "undefined"
         try: 
@@ -175,21 +211,24 @@ def control_loop():
                 if not gvars.paused:
                     pass
         except Exception:
-            with open("errorlog.txt", "a") as logfile:
-                logfile.write(str(datetime.datetime.now()) + "\n")
-                logfile.write(f"Following exception thrown on keypress {keypress}" + "\n")
-                logfile.write(str(traceback.format_exc()) + "\n\n")
+            errorlog(f"Following exception thrown on keypress {keypress}\n{str(traceback.format_exc())}\n\n")
 
+    log("Control loop end")
 
+log("Program started", headerline = True)
 text = input_loop()
+log(f"Text of length {len(text)} input")
 print(len(text))
+
 display_thread = threading.Thread(target = display_loop, args = (text, ))
 control_thread = threading.Thread(target = control_loop)
+
 display_thread.start()
 control_thread.start()
+log("Core loop threads started")
 
 display_thread.join()
 control_thread.join()
-
+log("Core loop threads joined")
 
 
