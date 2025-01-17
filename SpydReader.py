@@ -189,33 +189,6 @@ def display_loop(text: str):
 
     log("Display loop end")
 
-def control_loop():
-# TODO: something blocks keyboard interrupt.
-    log("Control loop start")
-    while display_thread.is_alive:
-        keypress = "undefined"
-        try: 
-            if keyboard.is_pressed('space'):
-                keypress = "space"
-                toggle_pause()
-                continue
-            if keyboard.is_pressed('up arrow'):
-                keypress = "up"
-                decrease_delay()
-                time.sleep(0.1)
-            if keyboard.is_pressed('down arrow'):
-                keypress = "down"
-                increase_delay
-                time.sleep(0.1)
-            if keyboard.is_pressed('esc'):
-                if not gvars.paused:
-                    toggle_pause()
-                exit()
-        except Exception:
-            errorlog(f"Following exception thrown on keypress {keypress}\n{str(traceback.format_exc())}\n\n")
-
-    log("Control loop end")
-
 def main():
     log("Program started", headerline = True)
     text = input_loop()
@@ -223,15 +196,18 @@ def main():
     print(len(text))
 
     display_thread = threading.Thread(target = display_loop, args = (text, ))
-    control_thread = threading.Thread(target = control_loop)
 
     display_thread.start()
-    control_thread.start()
-    log("Core loop threads started")
+    log("Display thread started")
+
+    # TODO: catch errors from control functions somehow
+    keyboard.add_hotkey('space', toggle_pause)
+    keyboard.add_hotkey('up', increase_delay)
+    keyboard.add_hotkey('down', decrease_delay)
+    keyboard.add_hotkey('esc', exit)
 
     display_thread.join()
-    control_thread.join()
-    log("Core loop threads joined")
+    log("Display thread joined")
 
 if __name__ == '__main__':
     main()
