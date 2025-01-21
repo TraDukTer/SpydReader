@@ -26,6 +26,7 @@ import datetime
 import re
 import threading
 import keyboard
+import signal
 import traceback
 
 def get_decorator():
@@ -34,7 +35,7 @@ def get_decorator():
             try:
                 return func(*args, **kwargs)
             except Exception:
-                errorlog(traceback.format_exc())
+                errorlog(f"Following exception raised by controller:\n{traceback.format_exc()}")
                 return None
         return new_func
     return decorator
@@ -173,9 +174,9 @@ def signal_exit(force: bool = False):
     if not force:
         while True:
             try:
-                confirm = input("Are you sure you want to quit? (y/n): ")
+                confirm = input("Do you want to exit program (y/n): ")
             except EOFError:
-                errorlog(f"Following exception thrown on exit\n{str(traceback.format_exc())}")
+                errorlog(f"Following exception raised on exit\n{str(traceback.format_exc())}")
                 log("Exit forced")
                 confirm = "y"
                 break
@@ -195,7 +196,7 @@ def signal_exit(force: bool = False):
             if not gvars.may_run.is_set():
                 toggle_pause()
     except Exception:
-        errorlog(f"Following exception thrown on exit\n{str(traceback.format_exc())}")
+        errorlog(f"Following exception raised on exit\n{str(traceback.format_exc())}")
 
     log("Exit function end")
 
@@ -206,6 +207,14 @@ def set_resolution(new_width: int, new_height: int):
 
     width = new_width
     height = new_height
+
+# _None is only included because the signal library calls signal.signal() with two arguments.
+@loggable_controller
+def ctrl_c(signum, _None):
+    log("Keyboard interrupt detected")
+    if signum == 2:
+        signal_exit(force=True)
+
 
 # Core functionality
 
@@ -243,25 +252,33 @@ def display_loop(text: str):
         print_center(" " * len(word))
         print_starting(f"delay: {str(gvars.delay)}ms", 3, height - 3)
 
+    if not gvars.exit:
+        signal_exit()
     log("Display loop end")
+
 
 def main():
     log("Program started", headerline = True)
     text = input_loop()
     log(f"Text of length {len(text)} input")
-    print(len(text))
 
     display_thread = threading.Thread(target = display_loop, args = (text, ))
 
     display_thread.start()
     log("Display thread started")
 
+    signal.signal(signal.SIGINT, ctrl_c)
+
     keyboard.add_hotkey('space', toggle_pause)
     keyboard.add_hotkey('up', decrease_delay)
     keyboard.add_hotkey('down', increase_delay)
     keyboard.add_hotkey('esc', signal_exit)
 
-    log("Waiting display thread to exit")
+    # Don't try to join Display thread until exit is intended
+    while not gvars.exit:
+        pass
+
+    log("Waiting for display thread to exit")
     exited = False
     while not exited:
         try:
@@ -272,4 +289,9 @@ def main():
             pass
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except Exception:
+        errorlog(f"Following exception raised in main:\n {traceback.format_exc()}")
+        log("Main thread exited with exception")
+        signal_exit(force=True)

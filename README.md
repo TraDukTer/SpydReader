@@ -40,7 +40,9 @@ Controls while displaying text:
 
 ## 1.ii. Known issues
 
-Due to being a work in progress, and using threads, SpydReader currently blocks keyboard interrupt. If the main thread is exited, the exit function cannot be called.
+It is possible for SpydReader may stay active but in an unresponsive state that cannot be ended with KeyboardInterrupt, though there are mitigations in place for known cases. This is due to SpydReader using threading; KeyboardInterrupt is only sent to the main thread in Python, so if it exits in an unhandled way, KeyboardInterrupt cannot be processed by SpydReader. SpydReader can always be exited by closing the terminal window in which it is running.
+
+Clicking on the terminal window will hide and pause SpydReader output. This is unintended, but not detrimental. 
 
 ## 1.iii. Planned Features
 
