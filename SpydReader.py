@@ -20,7 +20,6 @@
 #                                                                           #
 #############################################################################
 
-import sys
 import os
 import time
 import datetime
@@ -39,18 +38,20 @@ def get_decorator():
                 return None
         return new_func
     return decorator
+
 loggable_controller = get_decorator()
 
 class globalVars():
     pass
 
-width = 72 #x coordinate space
-height = 20 #y coordinate space
-frame = [[]] #width, NB! the y array will contain an array of chars x once anything is draw
 gvars = globalVars()
 gvars.delay = 100 #delay in milliseconds
 gvars.running = threading.Condition()
 gvars.paused = False
+
+width = 72 #x coordinate space
+height = 20 #y coordinate space
+frame = [[]] #width, NB! the y array will contain an array of chars x once anything is draw
 
 # Display and drawing utilities
 
@@ -58,6 +59,7 @@ def draw_fill(fill_char: str =" ", bg_char: str =None):
     global frame
 
     frame = [[fill_char for i in range(width)] for i in range(height)]
+#   TODO: bg_char
 
 def draw_row(char: str, ypos: int, start: int =0, end: int =-1):
     global frame
@@ -73,6 +75,7 @@ def draw_column(char: str, xpos: int, start: int =0, end: int =-1):
     
     for row in frame:
         row[xpos] = char
+#   TODO: start-end
 
 def draw_char(char: str, xpos: int, ypos: int):
     global frame
@@ -137,10 +140,6 @@ def log(
 def errorlog(message: str = ""):
     log(message, "errorlog.txt")
 
-# redirect error stream to errorlog
-# sys.stderr = open("errorlog.txt", "a")
-#sys.stderr = errorlog("Error thrown!")
-
 # Control utilities
 
 @loggable_controller
@@ -165,6 +164,10 @@ def increase_delay():
 def decrease_delay():
     if gvars.delay > 0:
         gvars.delay -= 10 if gvars.delay > 11 else 1
+
+@loggable_controller
+def signal_exit():
+    pass
 
 @loggable_controller
 def set_resolution(new_width: int, new_height: int):
@@ -225,19 +228,10 @@ def main():
     keyboard.add_hotkey('space', toggle_pause)
     keyboard.add_hotkey('up', decrease_delay)
     keyboard.add_hotkey('down', increase_delay)
-    keyboard.add_hotkey('esc', exit)
-    keyboard.add_hotkey('left', throw_exception)
+    keyboard.add_hotkey('esc', signal_exit)
 
     display_thread.join()
     log("Display thread joined")
 
-@loggable_controller
-def throw_exception():
-    raise Exception("testing")
-
 if __name__ == '__main__':
-    try:
-        main()
-    except Exception:
-        errorlog(f"Following exception thrown running main: {traceback.format_exc()}")
-    log("testing")
+    main()
