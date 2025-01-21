@@ -118,6 +118,16 @@ def refresh():
     os.system('cls')
     print(frame_str)
 
+def refresh_word(word):
+    print_center(word)
+    delay_string = f"delay: {str(gvars.delay)}ms"
+    print_starting(delay_string, 3, height - 3)
+    refresh()
+    time.sleep(gvars.delay/1000)
+    print_center(" " * len(word))
+    print_starting(" " * len(delay_string), 3, height - 3)
+
+
 # Logging utilities
 
 def log(
@@ -238,19 +248,17 @@ def input_loop() -> str:
 
 def display_loop(text: str):
     log("Display loop start")
-    text = re.split(" |\n", text)
+    text = [word for word in re.split(" |\n", text) if word]
     draw_fill(" ")
     draw_borders()
     for word in text:
+        # break loop if main thread asks to exit
         if gvars.exit:
             log("Display loop break")
             break
+        # wait if main thread has paused asked to pause and until it asks to unpause
         gvars.may_run.wait()
-        print_center(word)
-        refresh()
-        time.sleep(gvars.delay/1000)
-        print_center(" " * len(word))
-        print_starting(f"delay: {str(gvars.delay)}ms", 3, height - 3)
+        refresh_word(word)
 
     if not gvars.exit:
         signal_exit()
