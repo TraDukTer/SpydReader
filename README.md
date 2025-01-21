@@ -36,13 +36,17 @@ Controls while displaying text:
 - Space:        pause/unpause
 - Up arrow:     increase speed of text (decrease interval between words shown)
 - Down arrow:   decrease speed of text (increase interval between words shown)
+- Left arrow:   jump back in text (by five words if not paused and one if paused)
+- Right arrow:  jump forward in text (by five words if not paused and one if paused)
 - Esc:          exit program (will ask for confirmation)
 
 ## 1.ii. Known issues
 
 It is possible for SpydReader may stay active but in an unresponsive state that cannot be ended with KeyboardInterrupt, though there are mitigations in place for known cases. This is due to SpydReader using threading; KeyboardInterrupt is only sent to the main thread in Python, so if it exits in an unhandled way, KeyboardInterrupt cannot be processed by SpydReader. SpydReader can always be exited by closing the terminal window in which it is running.
 
-Clicking on the terminal window will hide and pause SpydReader output. This is unintended, but not detrimental. 
+Clicking on the terminal window will hide and pause SpydReader output. This is unintended, but not detrimental.
+
+SpydReader listens for keyboard input if running, even if the terminal window is not focused. E.g. typing with SpydReader is running will cause SpydReader to pause and unpause.
 
 ## 1.iii. Planned Features
 
@@ -56,7 +60,8 @@ Clicking on the terminal window will hide and pause SpydReader output. This is u
 
 ### 1.iii.b. Interface
 
-- Control features to move backwards and forwards in text
+- Make jump increment (right/left arrows) configurable 
+- Implement double-tap to jump a greater increment at a time
 - Control features to choose the size of the display area
 - Displaying several words at a time in various configurations of rows
 - Override to enter specific values for text progress and display speed while display is paused

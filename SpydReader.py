@@ -47,6 +47,7 @@ class globalVars():
 
 gvars = globalVars()
 gvars.delay = 100 #delay in milliseconds
+gvars.seek_increment = 5
 gvars.may_run = threading.Event()
 gvars.may_run.set()
 gvars.exit = False
@@ -118,7 +119,8 @@ def refresh():
     os.system('cls')
     print(frame_str)
 
-def refresh_word(word):
+def refresh_current_word():
+    word = gvars.text[gvars.word_index]
     print_center(word)
     delay_string = f"delay: {str(gvars.delay)}ms"
     print_starting(delay_string, 3, height - 3)
@@ -168,6 +170,30 @@ def toggle_pause() -> bool:
 @loggable_controller
 def increase_delay():
     gvars.delay += 10 if gvars.delay >= 10 else 1
+
+def get_appropriate_increment() -> int:
+    if gvars.may_run.is_set():
+        return gvars.seek_increment
+    else:
+        return 1
+
+@loggable_controller
+def rewind():
+    increment = get_appropriate_increment()
+    if gvars.word_index - increment >= 0:
+        gvars.word_index -= increment
+    else:
+        gvars.word_index = 0
+    refresh_current_word()
+
+@loggable_controller
+def skip_forward():
+    increment = get_appropriate_increment()
+    if gvars.word_index + increment < len(gvars.text) -1:
+        gvars.word_index += increment
+    else:
+        gvars.word_index = len(gvars.text) -1
+    refresh_current_word()
 
 @loggable_controller
 def decrease_delay():
@@ -248,17 +274,19 @@ def input_loop() -> str:
 
 def display_loop(text: str):
     log("Display loop start")
-    text = [word for word in re.split(" |\n", text) if word]
+    gvars.text = [word for word in re.split(" |\n", text) if word]
     draw_fill(" ")
     draw_borders()
-    for word in text:
+    gvars.word_index = 0
+    while gvars.word_index < len(gvars.text)-1:
         # break loop if main thread asks to exit
         if gvars.exit:
             log("Display loop break")
             break
         # wait if main thread has paused asked to pause and until it asks to unpause
         gvars.may_run.wait()
-        refresh_word(word)
+        refresh_current_word()
+        gvars.word_index += 1
 
     if not gvars.exit:
         signal_exit()
@@ -281,6 +309,8 @@ def main():
     keyboard.add_hotkey('up', decrease_delay)
     keyboard.add_hotkey('down', increase_delay)
     keyboard.add_hotkey('esc', signal_exit)
+    keyboard.add_hotkey('left', rewind)
+    keyboard.add_hotkey('right', skip_forward)
 
     # Don't try to join Display thread until exit is intended
     while not gvars.exit:
