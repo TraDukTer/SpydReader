@@ -26,28 +26,34 @@ import datetime
 import re
 import threading
 import keyboard
+import signal
 import traceback
+
+def get_decorator():
+    def decorator(func):
+        def new_func(*args, **kwargs):
+            try:
+                return func(*args, **kwargs)
+            except Exception:
+                errorlog(f"Following exception raised by controller:\n{traceback.format_exc()}")
+                return None
+        return new_func
+    return decorator
+
+loggable_controller = get_decorator()
 
 class globalVars():
     pass
 
+gvars = globalVars()
+gvars.delay = 100 #delay in milliseconds
+gvars.may_run = threading.Event()
+gvars.may_run.set()
+gvars.exit = False
+
 width = 72 #x coordinate space
 height = 20 #y coordinate space
 frame = [[]] #width, NB! the y array will contain an array of chars x once anything is draw
-gvars = globalVars()
-gvars.delay = 100 #delay in milliseconds
-gvars.running = threading.Condition()
-gvars.paused = False
-gvars.exit = False
-
-# Settings
-
-def set_resolution(new_width: int, new_height: int):
-    global width
-    global height
-
-    width = new_width
-    height = new_height
 
 # Display and drawing utilities
 
@@ -55,6 +61,7 @@ def draw_fill(fill_char: str =" ", bg_char: str =None):
     global frame
 
     frame = [[fill_char for i in range(width)] for i in range(height)]
+#   TODO: bg_char
 
 def draw_row(char: str, ypos: int, start: int =0, end: int =-1):
     global frame
@@ -70,6 +77,7 @@ def draw_column(char: str, xpos: int, start: int =0, end: int =-1):
     
     for row in frame:
         row[xpos] = char
+#   TODO: start-end
 
 def draw_char(char: str, xpos: int, ypos: int):
     global frame
@@ -123,60 +131,92 @@ def log(
     if overwrite:
         open_text_mode = "w"
     with open(file_name, open_text_mode) as logfile:
-        #Write line of pound signs as a header to mark out an importnat line, if active
+        #Write line of pound signs as a header to mark out an important line, if active
         if headerline:
             logfile.write("###############\n")
         #Write timestamp before the log message, if active (default active)
         if timestamp:
-            logfile.write(str(datetime.datetime.now()) + "\n")
-        logfile.write(message+"\n\n")
+            logfile.write(str(f"{datetime.datetime.now()}\n"))
+        logfile.write(f"{message}\n\n")
 
-def errorlog(message):
+def errorlog(message: str = ""):
     log(message, "errorlog.txt")
 
 # Control utilities
 
+@loggable_controller
 def toggle_pause() -> bool:
-    if gvars.paused:
-        time.sleep(0.1)
-        gvars.paused = False
-        print("unpaused")
-        gvars.running.notify()
-        gvars.running.release()
-    elif not gvars.paused:
-        gvars.running.acquire()
-        gvars.paused = True
+    if gvars.may_run.is_set():
+        gvars.may_run.clear()
         print("paused")
-        time.sleep(0.1)
+        return False
+    else:
+        gvars.may_run.set()
+        print("unpaused")
+        return True
 
-def exit(force: bool = False):
-    if not gvars.paused:
+@loggable_controller
+def increase_delay():
+    gvars.delay += 10 if gvars.delay >= 10 else 1
+
+@loggable_controller
+def decrease_delay():
+    if gvars.delay > 0:
+        gvars.delay -= 10 if gvars.delay > 11 else 1
+
+@loggable_controller
+def signal_exit(force: bool = False):
+    log("Exit function start")
+
+    if gvars.may_run.is_set():
         toggle_pause()
-    confirm = None
+
     if not force:
         while True:
-            confirm = input("Are you sure you want to quit? (y/n): ")
+            try:
+                confirm = input("Do you want to exit program (y/n): ")
+            except EOFError:
+                errorlog(f"Following exception raised on exit\n{str(traceback.format_exc())}")
+                log("Exit forced")
+                confirm = "y"
+                break
             if confirm == "y":
                 log("Exit confirmed")
                 break
             elif confirm == "n":
                 log("Exit cancelled")
                 break
-    else: 
+    else:
         log("Exit forced")
         confirm = "y"
 
-    if confirm == "y":
-        try:
+    try:
+        if confirm == "y":
             gvars.exit = True
-            toggle_pause()
-            toggle_pause()
-        except Exception:
-            errorlog(f"Following exception thrown on exit\n{str(traceback.format_exc())}")
+            if not gvars.may_run.is_set():
+                toggle_pause()
+    except Exception:
+        errorlog(f"Following exception raised on exit\n{str(traceback.format_exc())}")
 
     log("Exit function end")
 
-# Core functionality loops
+@loggable_controller
+def set_resolution(new_width: int, new_height: int):
+    global width
+    global height
+
+    width = new_width
+    height = new_height
+
+# _None is only included because the signal library calls signal.signal() with two arguments.
+@loggable_controller
+def ctrl_c(signum, _None):
+    log("Keyboard interrupt detected")
+    if signum == 2:
+        signal_exit(force=True)
+
+
+# Core functionality
 
 def input_loop() -> str:
     log("Input loop start")
@@ -205,76 +245,53 @@ def display_loop(text: str):
         if gvars.exit:
             log("Display loop break")
             break
-        with gvars.running:
-            while gvars.paused:
-                gvars.running.wait()
+        gvars.may_run.wait()
         print_center(word)
         refresh()
         time.sleep(gvars.delay/1000)
         print_center(" " * len(word))
         print_starting(f"delay: {str(gvars.delay)}ms", 3, height - 3)
 
+    if not gvars.exit:
+        signal_exit()
     log("Display loop end")
 
-def control_loop():
-# TODO: something blocks keyboard interrupt.
-    log("Control loop start")
-    while not gvars.exit:
-        if gvars.exit:
-            log("Control loop break")
-            break
-        keypress = "undefined"
-        try: 
-            if keyboard.is_pressed('space'):
-                keypress = "space"
-                toggle_pause()
-                continue
-            if keyboard.is_pressed('up arrow'):
-                keypress = "up"
-                if gvars.delay >= 11:
-                    gvars.delay -= 10
-                elif gvars.delay > 1:
-                    gvars.delay -= 1
-                time.sleep(0.1)
-            if keyboard.is_pressed('down arrow'):
-                keypress = "down"
-                if gvars.delay < 10:
-                    gvars.delay += 1
-                else:
-                    gvars.delay += 10
-                time.sleep(0.1)
-            if keyboard.is_pressed('esc'):
-                exit()
-                continue
-        except Exception:
-            errorlog(f"Following exception thrown on keypress {keypress}\n{str(traceback.format_exc())}")
-
-    log("Control loop end")
 
 def main():
-    try:
-        log("Program started", headerline = True)
-        text = input_loop()
+    log("Program started", headerline = True)
+    text = input_loop()
+    log(f"Text of length {len(text)} input")
 
-        log(f"Text of length {len(text)} input")
-        display_thread = threading.Thread(target = display_loop, args = (text, ))
-        control_thread = threading.Thread(target = control_loop)
-        log("Threads started")
-        display_thread.start()
-        control_thread.start()
+    display_thread = threading.Thread(target = display_loop, args = (text, ))
 
-        while not gvars.exit:
-            time.sleep(100)
-    except KeyboardInterrupt:
-        log("KeyboardInterrupt caught")
-        exit(force = True)
-    except Exception:
-        errorlog(f"Following exception thrown in main\n{str(traceback.format_exc())}")
+    display_thread.start()
+    log("Display thread started")
 
+    signal.signal(signal.SIGINT, ctrl_c)
 
-    display_thread.join()
-    control_thread.join()
-    log("Threads joined")
+    keyboard.add_hotkey('space', toggle_pause)
+    keyboard.add_hotkey('up', decrease_delay)
+    keyboard.add_hotkey('down', increase_delay)
+    keyboard.add_hotkey('esc', signal_exit)
+
+    # Don't try to join Display thread until exit is intended
+    while not gvars.exit:
+        pass
+
+    log("Waiting for display thread to exit")
+    exited = False
+    while not exited:
+        try:
+            display_thread.join()
+            log("Display thread exited")
+            exited = True
+        except KeyboardInterrupt:
+            pass
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except Exception:
+        errorlog(f"Following exception raised in main:\n {traceback.format_exc()}")
+        log("Main thread exited with exception")
+        signal_exit(force=True)

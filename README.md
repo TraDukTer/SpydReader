@@ -6,8 +6,13 @@ SpydReader is a Python-based Rapid Serial Visual Presentation (RSVP) speed-readi
 
 1. Description
     1. Features
+        1. Input text
+        2. Interface
     2. Known issues
     3. Planned features
+        1. Input text
+        2. Interface
+        3. Implementation
 2. Requirements
 3. License
 
@@ -17,28 +22,31 @@ SpydReader flashes words (or groups of words) from an input text in the center o
 
 As of January 2025, I am developing SpydReader on my own and am not looking for contributors at this time. I intend to develop SpydReader alone into some kind of minimum lovable product and an entry into my personal programming portfolio. I welcome feedback and input on e.g. future features via my GitHub account, and don't rule out co-operating with other developers at a later date.
 
-## 1.2. Features
+## 1.i. Features
 
-1. Input text
+### 1.i.a. Input text
 
 SpydReader currently supports input as .txt file and raw text input to the text-based user interface. The current iteration only works on Windows. The .txt file is read into memory in its entirety, so some software limitations to its length apply. The file name can be arbitrary, but the file has to be placed in the /Input folder in the same folder as SpydReader.
 
-2. Interface
+### 1.i.b. Interface
 
 SpydReader is currently completely text-based and runs in a terminal. 
 
 Controls while displaying text:
-Space:      pause/unpause
-Up arrow:   increase speed of text (decrease interval between words shown)
-Down arrow: decrease speed of text (increase interval between words shown)
+- Space:        pause/unpause
+- Up arrow:     increase speed of text (decrease interval between words shown)
+- Down arrow:   decrease speed of text (increase interval between words shown)
+- Esc:          exit program (will ask for confirmation)
 
-## 1.2. Known issues
+## 1.ii. Known issues
 
-Due to being a work in progress, SpydReader currently blocks keyboard interrupt and cannot be closedwithout closing the terminal instance that ran it.
+It is possible for SpydReader may stay active but in an unresponsive state that cannot be ended with KeyboardInterrupt, though there are mitigations in place for known cases. This is due to SpydReader using threading; KeyboardInterrupt is only sent to the main thread in Python, so if it exits in an unhandled way, KeyboardInterrupt cannot be processed by SpydReader. SpydReader can always be exited by closing the terminal window in which it is running.
 
-## 1.3 Planned Features
+Clicking on the terminal window will hide and pause SpydReader output. This is unintended, but not detrimental. 
 
-1. Input text
+## 1.iii. Planned Features
+
+### 1.iii.a. Input text
 
 - Saving progress on .txt files
 - Reading large files piecemeal
@@ -46,9 +54,8 @@ Due to being a work in progress, SpydReader currently blocks keyboard interrupt 
 - Support for specifying an input file's path to the program
 - File Explorer (or similar) to browse for an input file (not a priority)
 
-2. Interface
+### 1.iii.b. Interface
 
-- A control feature to exit the program gracefully
 - Control features to move backwards and forwards in text
 - Control features to choose the size of the display area
 - Displaying several words at a time in various configurations of rows
@@ -72,7 +79,7 @@ Due to being a work in progress, SpydReader currently blocks keyboard interrupt 
     - Terminal mode will be supported when TUI mode is implemented
     - TUI mode will be supported if and hen GUI mode is implemented. 
 
-3. Implementation
+### 1.iii.c. Implementation
 
 - Linux/UNIX support
 - Makefile
