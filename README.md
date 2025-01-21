@@ -33,13 +33,14 @@ SpydReader currently supports input as .txt file and raw text input to the text-
 SpydReader is currently completely text-based and runs in a terminal. 
 
 Controls while displaying text:
-- Space:      pause/unpause
-- Up arrow:   increase speed of text (decrease interval between words shown)
-- Down arrow: decrease speed of text (increase interval between words shown)
+- Space:        pause/unpause
+- Up arrow:     increase speed of text (decrease interval between words shown)
+- Down arrow:   decrease speed of text (increase interval between words shown)
+- Esc:          exit program (will ask for confirmation)
 
 ## 1.ii. Known issues
 
-Due to being a work in progress, SpydReader currently blocks keyboard interrupt and cannot be closedwithout closing the terminal instance that ran it.
+Due to being a work in progress, and using threads, SpydReader currently blocks keyboard interrupt. If the main thread is exited, the exit function will be called.
 
 ## 1.iii. Planned Features
 
@@ -53,7 +54,6 @@ Due to being a work in progress, SpydReader currently blocks keyboard interrupt 
 
 ### 1.iii.b. Interface
 
-- A control feature to exit the program gracefully
 - Control features to move backwards and forwards in text
 - Control features to choose the size of the display area
 - Displaying several words at a time in various configurations of rows

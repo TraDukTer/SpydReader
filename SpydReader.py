@@ -46,8 +46,9 @@ class globalVars():
 
 gvars = globalVars()
 gvars.delay = 100 #delay in milliseconds
-gvars.running = threading.Condition()
-gvars.paused = False
+gvars.may_run = threading.Event()
+gvars.may_run.set()
+gvars.exit = False
 
 width = 72 #x coordinate space
 height = 20 #y coordinate space
@@ -144,17 +145,14 @@ def errorlog(message: str = ""):
 
 @loggable_controller
 def toggle_pause() -> bool:
-    if gvars.paused:
-        time.sleep(0.1)
-        gvars.paused = False
-        print("unpaused")
-        gvars.running.notify()
-        gvars.running.release()
-    elif not gvars.paused:
-        gvars.running.acquire()
-        gvars.paused = True
+    if gvars.may_run.is_set():
+        gvars.may_run.clear()
         print("paused")
-        time.sleep(0.1)
+        return False
+    else:
+        gvars.may_run.set()
+        print("unpaused")
+        return True
 
 @loggable_controller
 def increase_delay():
@@ -166,8 +164,40 @@ def decrease_delay():
         gvars.delay -= 10 if gvars.delay > 11 else 1
 
 @loggable_controller
-def signal_exit():
-    pass
+def signal_exit(force: bool = False):
+    log("Exit function start")
+
+    if gvars.may_run.is_set():
+        toggle_pause()
+
+    if not force:
+        while True:
+            try:
+                confirm = input("Are you sure you want to quit? (y/n): ")
+            except EOFError:
+                errorlog(f"Following exception thrown on exit\n{str(traceback.format_exc())}")
+                log("Exit forced")
+                confirm = "y"
+                break
+            if confirm == "y":
+                log("Exit confirmed")
+                break
+            elif confirm == "n":
+                log("Exit cancelled")
+                break
+    else:
+        log("Exit forced")
+        confirm = "y"
+
+    try:
+        if confirm == "y":
+            gvars.exit = True
+            if not gvars.may_run.is_set():
+                toggle_pause()
+    except Exception:
+        errorlog(f"Following exception thrown on exit\n{str(traceback.format_exc())}")
+
+    log("Exit function end")
 
 @loggable_controller
 def set_resolution(new_width: int, new_height: int):
@@ -203,9 +233,10 @@ def display_loop(text: str):
     draw_fill(" ")
     draw_borders()
     for word in text:
-        with gvars.running:
-            while gvars.paused:
-                gvars.running.wait()
+        if gvars.exit:
+            log("Display loop break")
+            break
+        gvars.may_run.wait()
         print_center(word)
         refresh()
         time.sleep(gvars.delay/1000)
@@ -230,8 +261,15 @@ def main():
     keyboard.add_hotkey('down', increase_delay)
     keyboard.add_hotkey('esc', signal_exit)
 
-    display_thread.join()
-    log("Display thread joined")
+    log("Waiting display thread to exit")
+    exited = False
+    while not exited:
+        try:
+            display_thread.join()
+            log("Display thread exited")
+            exited = True
+        except KeyboardInterrupt:
+            pass
 
 if __name__ == '__main__':
     main()
