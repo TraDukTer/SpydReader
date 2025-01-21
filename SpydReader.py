@@ -61,14 +61,14 @@ frame = [[]] #width, NB! the y array will contain an array of chars x once anyth
 def draw_fill(fill_char: str =" ", bg_char: str =None):
     global frame
 
-    frame = [[fill_char for i in range(width)] for i in range(height)]
+    frame = [[fill_char for _ in range(width)] for i in range(height)]
 #   TODO: bg_char
 
 def draw_row(char: str, ypos: int, start: int =0, end: int =-1):
     global frame
     if end == -1:
         end = width
-    frame[ypos] = [char for i in range (start, end)]
+    frame[ypos] = [char for _ in range (start, end)]
 #   TODO frame[ypos] = char*(end-start)
 
 def draw_column(char: str, xpos: int, start: int =0, end: int =-1):
@@ -100,6 +100,47 @@ def print_starting(string: str, startingx: int, startingy: int):
         draw_char(char, startingx + i, startingy)
         i += 1
 
+def print_in_dialog(string: str):
+    xcen = width // 2
+    ystart = 5
+    dialogbox_start = xcen - (len(string) // 2) - 1
+
+#   TODO: handle multiple lines
+#   draw the left edge of the dialog box with box-drawing characters
+    draw_char("╔", dialogbox_start, ystart)
+    draw_char("║", dialogbox_start, ystart + 1)
+    draw_char("╚", dialogbox_start, ystart + 2)
+
+#   draw the right edge of the dialog box with box-drawing characters
+    draw_char("╗", dialogbox_start + len(string) + 1, ystart)
+    draw_char("║", dialogbox_start + len(string) + 1, ystart + 1)
+    draw_char("╝", dialogbox_start + len(string) + 1, ystart + 2)
+
+    i = 1
+    for char in string:
+        draw_char("═", dialogbox_start + i, ystart)
+        draw_char(char, dialogbox_start + i, ystart + 1)
+        draw_char("═", dialogbox_start + i, ystart + 2)
+        i += 1
+
+    refresh()
+
+# TODO: implement dialogs as class
+def clean_up_dialog(string: str):
+    xcen = width // 2
+    ystart = 5
+    dialogbox_start = xcen - (len(string) // 2) - 1
+    bg_char = " "
+
+    i = 0
+    for _ in f" {string} ":
+        draw_char(bg_char, dialogbox_start + i, ystart)
+        draw_char(bg_char, dialogbox_start + i, ystart + 1)
+        draw_char(bg_char, dialogbox_start + i, ystart + 2)
+        i += 1
+
+    refresh_UI_elements()
+
 def draw_borders():
     draw_column("║", 0)
     draw_column("║", width - 1)
@@ -119,7 +160,7 @@ def refresh():
     os.system('cls')
     print(frame_str)
 
-def refresh_current_word():
+def refresh_UI_elements():
     word = gvars.text[gvars.word_index]
     print_center(word)
     delay_string = f"delay: {str(gvars.delay)}ms"
@@ -160,11 +201,11 @@ def errorlog(message: str = ""):
 def toggle_pause() -> bool:
     if gvars.may_run.is_set():
         gvars.may_run.clear()
-        print("paused")
+        print_in_dialog("PAUSED")
         return False
     else:
         gvars.may_run.set()
-        print("unpaused")
+        clean_up_dialog("PAUSED")
         return True
 
 @loggable_controller
@@ -184,7 +225,7 @@ def rewind():
         gvars.word_index -= increment
     else:
         gvars.word_index = 0
-    refresh_current_word()
+    refresh_UI_elements()
 
 @loggable_controller
 def skip_forward():
@@ -193,7 +234,7 @@ def skip_forward():
         gvars.word_index += increment
     else:
         gvars.word_index = len(gvars.text) -1
-    refresh_current_word()
+    refresh_UI_elements()
 
 @loggable_controller
 def decrease_delay():
@@ -205,12 +246,13 @@ def signal_exit(force: bool = False):
     log("Exit function start")
 
     if gvars.may_run.is_set():
-        toggle_pause()
+        gvars.may_run.clear()
 
     if not force:
+        print_in_dialog("Do you want to exit program (y/n)")
         while True:
             try:
-                confirm = input("Do you want to exit program (y/n): ")
+                confirm = input("(y/n): ")
             except EOFError:
                 errorlog(f"Following exception raised on exit\n{str(traceback.format_exc())}")
                 log("Exit forced")
@@ -222,6 +264,7 @@ def signal_exit(force: bool = False):
             elif confirm == "n":
                 log("Exit cancelled")
                 break
+        clean_up_dialog("Do you want to exit program (y/n)")
     else:
         log("Exit forced")
         confirm = "y"
@@ -230,7 +273,14 @@ def signal_exit(force: bool = False):
         if confirm == "y":
             gvars.exit = True
             if not gvars.may_run.is_set():
-                toggle_pause()
+                if gvars.word_index > 0:
+                    gvars.word_index -= 1
+                gvars.may_run.set()
+        elif confirm == "n":
+            if gvars.word_index > 0:
+                gvars.word_index -= 1
+            gvars.may_run.set()
+            toggle_pause()
     except Exception:
         errorlog(f"Following exception raised on exit\n{str(traceback.format_exc())}")
 
@@ -285,7 +335,7 @@ def display_loop(text: str):
             break
         # wait if main thread has paused asked to pause and until it asks to unpause
         gvars.may_run.wait()
-        refresh_current_word()
+        refresh_UI_elements()
         gvars.word_index += 1
 
     if not gvars.exit:
