@@ -40,7 +40,7 @@ Controls while displaying text:
 
 ## 1.ii. Known issues
 
-Due to being a work in progress, and using threads, SpydReader currently blocks keyboard interrupt. If the main thread is exited, the exit function will be called.
+Due to being a work in progress, and using threads, SpydReader currently blocks keyboard interrupt. If the main thread is exited, the exit function cannot be called.
 
 ## 1.iii. Planned Features
 
