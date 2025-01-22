@@ -43,50 +43,45 @@ def get_decorator():
 loggable_controller = get_decorator()
 
 class globalVars():
-    pass
+    
+    def __init__(self):
+        self.delay = 100 #delay in milliseconds
+        self.seek_increment = 5
+        self.may_run = threading.Event()
+        self.may_run.set()
+        self.exit = False
+        self.width = 72 #x coordinate space
+        self.height = 20 #y coordinate space
+        self.frame = [[]] # NB! the y array contains arrays of x chars
 
 gvars = globalVars()
-gvars.delay = 100 #delay in milliseconds
-gvars.seek_increment = 5
-gvars.may_run = threading.Event()
-gvars.may_run.set()
-gvars.exit = False
-
-width = 72 #x coordinate space
-height = 20 #y coordinate space
-frame = [[]] #width, NB! the y array will contain an array of chars x once anything is draw
 
 # Display and drawing utilities
 
 def draw_fill(fill_char: str =" ", bg_char: str =None):
-    global frame
-
-    frame = [[fill_char for _ in range(width)] for i in range(height)]
+    gvars.frame = [[fill_char for _ in range(gvars.width)] for i in range(gvars.height)]
 #   TODO: bg_char
 
-def draw_row(char: str, ypos: int, start: int =0, end: int =-1):
-    global frame
+def draw_row(char: str, ypos: int, start: int = 0, end: int = -1):
     if end == -1:
-        end = width
-    frame[ypos] = [char for _ in range (start, end)]
-#   TODO frame[ypos] = char*(end-start)
+        end = gvars.width
+    gvars.frame[ypos] = [char for _ in range (start, end)]
+#   TODO fix start-end, implement frame[ypos] = char*(end-start)
 
 def draw_column(char: str, xpos: int, start: int =0, end: int =-1):
-    global frame
     if end == -1:
-        end = height - 1
+        end = gvars.height - 1
     
-    for row in frame:
+    for row in gvars.frame:
         row[xpos] = char
 #   TODO: start-end
 
 def draw_char(char: str, xpos: int, ypos: int):
-    global frame
-    frame[ypos][xpos] = char
+    gvars.frame[ypos][xpos] = char
 
 def print_center(string: str):
-    ycen = height // 2
-    xcen = width // 2
+    ycen = gvars.height // 2
+    xcen = gvars.width // 2
     string_start = xcen - (len(string) // 2)
 
     i = 0
@@ -101,7 +96,7 @@ def print_starting(string: str, startingx: int, startingy: int):
         i += 1
 
 def print_in_dialog(string: str):
-    xcen = width // 2
+    xcen = gvars.width // 2
     ystart = 5
     dialogbox_start = xcen - (len(string) // 2) - 1
 
@@ -127,7 +122,7 @@ def print_in_dialog(string: str):
 
 # TODO: implement dialogs as class
 def clean_up_dialog(string: str):
-    xcen = width // 2
+    xcen = gvars.width // 2
     ystart = 5
     dialogbox_start = xcen - (len(string) // 2) - 1
     bg_char = " "
@@ -143,17 +138,18 @@ def clean_up_dialog(string: str):
 
 def draw_borders():
     draw_column("║", 0)
-    draw_column("║", width - 1)
+    draw_column("║", gvars.width - 1)
     draw_row("═", 0)
-    draw_row("═", height - 1)
+    draw_row("═", gvars.height - 1)
     draw_char("╔", 0, 0)
     draw_char("╗", -1, 0)
     draw_char("╚", 0, -1)
     draw_char("╝", -1, -1)
 
 def refresh():
+    # TODO: lock printing while updating frame.str
     frame_str = ""
-    for row in frame:
+    for row in gvars.frame:
         for char in row:
             frame_str += char
         frame_str += "\n"
@@ -161,14 +157,15 @@ def refresh():
     print(frame_str)
 
 def refresh_UI_elements():
+    # TODO: how to lock printing to stop jumbled words without locking update to length of delay
     word = gvars.text[gvars.word_index]
     print_center(word)
     delay_string = f"delay: {str(gvars.delay)}ms"
-    print_starting(delay_string, 3, height - 3)
+    print_starting(delay_string, 3, gvars.height - 3)
     refresh()
     time.sleep(gvars.delay/1000)
     print_center(" " * len(word))
-    print_starting(" " * len(delay_string), 3, height - 3)
+    print_starting(" " * len(delay_string), 3, gvars.height - 3)
 
 
 # Logging utilities
@@ -288,11 +285,9 @@ def signal_exit(force: bool = False):
 
 @loggable_controller
 def set_resolution(new_width: int, new_height: int):
-    global width
-    global height
 
-    width = new_width
-    height = new_height
+    gvars.width = new_width
+    gvars.height = new_height
 
 # _None is only included because the signal library calls signal.signal() with two arguments.
 @loggable_controller
