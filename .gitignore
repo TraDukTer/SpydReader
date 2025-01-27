@@ -1,8 +1,11 @@
-# local input files
+# Local input files
 input.txt
+Input/
+
+# Log files
 log.txt
 errorlog.txt
-Input/
+debuglog.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

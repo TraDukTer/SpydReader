@@ -47,26 +47,82 @@ class globalVars():
     def __init__(self):
         self.delay = 100 #delay in milliseconds
         self.seek_increment = 5
+
         self.may_run = threading.Event()
         self.may_run.set()
         self.exit = False
+
         self.width = 72 #x coordinate space
         self.height = 20 #y coordinate space
         self.frame = [[]] # NB! the y array contains arrays of x chars
 
+        self.text = None
+        self.word_index = None
+        self.previous_index = None
+
 gvars = globalVars()
+
+class Dialog():
+    def __init__(self, message: str):
+        self.message = message
+
+    def show(self):
+        xcen = gvars.width // 2
+        ystart = 5
+        dialogbox_start = xcen - (len(self.message) // 2) - 1
+
+        # TODO: handle multiple lines
+        # draw the left edge of the dialog box with box-drawing characters
+        draw_char("╔", dialogbox_start, ystart)
+        draw_char("║", dialogbox_start, ystart + 1)
+        draw_char("╚", dialogbox_start, ystart + 2)
+
+        # draw the right edge of the dialog box with box-drawing characters
+        draw_char("╗", dialogbox_start + len(self.message) + 1, ystart)
+        draw_char("║", dialogbox_start + len(self.message) + 1, ystart + 1)
+        draw_char("╝", dialogbox_start + len(self.message) + 1, ystart + 2)
+
+        i = 1
+        for char in self.message:
+            draw_char("═", dialogbox_start + i, ystart)
+            draw_char(char, dialogbox_start + i, ystart + 1)
+            draw_char("═", dialogbox_start + i, ystart + 2)
+            i += 1
+
+        refresh()
+
+    def hide(self):
+        xcen = gvars.width // 2
+        ystart = 5
+        dialogbox_start = xcen - (len(self.message) // 2) - 1
+        bg_char = " "
+
+        i = 0
+        for _ in f" {self.message} ":
+            draw_char(bg_char, dialogbox_start + i, ystart)
+            draw_char(bg_char, dialogbox_start + i, ystart + 1)
+            draw_char(bg_char, dialogbox_start + i, ystart + 2)
+            i += 1
+
+        if not gvars.may_run:
+            gvars.word_index = gvars.previous_index
+
+        draw_UI_elements()
+
+pause_dialog = Dialog("PAUSED")
+exit_confirmation_dialog = Dialog("Do you want to exit program (y/n)")
 
 # Display and drawing utilities
 
 def draw_fill(fill_char: str =" ", bg_char: str =None):
     gvars.frame = [[fill_char for _ in range(gvars.width)] for i in range(gvars.height)]
-#   TODO: bg_char
+    # TODO: bg_char
 
 def draw_row(char: str, ypos: int, start: int = 0, end: int = -1):
     if end == -1:
         end = gvars.width
     gvars.frame[ypos] = [char for _ in range (start, end)]
-#   TODO fix start-end, implement frame[ypos] = char*(end-start)
+    # TODO fix start-end, implement frame[ypos] = char*(end-start)
 
 def draw_column(char: str, xpos: int, start: int =0, end: int =-1):
     if end == -1:
@@ -74,7 +130,7 @@ def draw_column(char: str, xpos: int, start: int =0, end: int =-1):
     
     for row in gvars.frame:
         row[xpos] = char
-#   TODO: start-end
+    # TODO: start-end
 
 def draw_char(char: str, xpos: int, ypos: int):
     gvars.frame[ypos][xpos] = char
@@ -95,47 +151,6 @@ def print_starting(string: str, startingx: int, startingy: int):
         draw_char(char, startingx + i, startingy)
         i += 1
 
-def print_in_dialog(string: str):
-    xcen = gvars.width // 2
-    ystart = 5
-    dialogbox_start = xcen - (len(string) // 2) - 1
-
-#   TODO: handle multiple lines
-#   draw the left edge of the dialog box with box-drawing characters
-    draw_char("╔", dialogbox_start, ystart)
-    draw_char("║", dialogbox_start, ystart + 1)
-    draw_char("╚", dialogbox_start, ystart + 2)
-
-#   draw the right edge of the dialog box with box-drawing characters
-    draw_char("╗", dialogbox_start + len(string) + 1, ystart)
-    draw_char("║", dialogbox_start + len(string) + 1, ystart + 1)
-    draw_char("╝", dialogbox_start + len(string) + 1, ystart + 2)
-
-    i = 1
-    for char in string:
-        draw_char("═", dialogbox_start + i, ystart)
-        draw_char(char, dialogbox_start + i, ystart + 1)
-        draw_char("═", dialogbox_start + i, ystart + 2)
-        i += 1
-
-    refresh()
-
-# TODO: implement dialogs as class
-def clean_up_dialog(string: str):
-    xcen = gvars.width // 2
-    ystart = 5
-    dialogbox_start = xcen - (len(string) // 2) - 1
-    bg_char = " "
-
-    i = 0
-    for _ in f" {string} ":
-        draw_char(bg_char, dialogbox_start + i, ystart)
-        draw_char(bg_char, dialogbox_start + i, ystart + 1)
-        draw_char(bg_char, dialogbox_start + i, ystart + 2)
-        i += 1
-
-    refresh_UI_elements()
-
 def draw_borders():
     draw_column("║", 0)
     draw_column("║", gvars.width - 1)
@@ -145,6 +160,17 @@ def draw_borders():
     draw_char("╗", -1, 0)
     draw_char("╚", 0, -1)
     draw_char("╝", -1, -1)
+
+def draw_UI_elements():
+    word = gvars.text[gvars.word_index]
+    if gvars.previous_index:
+        print_center(" " * len(gvars.text[gvars.previous_index]))
+    print_starting(" " * 15, 3, gvars.height - 3)
+    print_center(word)
+    gvars.previous_index = gvars.word_index
+    delay_string = f"delay: {str(gvars.delay)}ms"
+    print_starting(delay_string, 3, gvars.height - 3)
+
 
 def refresh():
     # TODO: lock printing while updating frame.str
@@ -157,15 +183,8 @@ def refresh():
     print(frame_str)
 
 def refresh_UI_elements():
-    # TODO: how to lock printing to stop jumbled words without locking update to length of delay
-    word = gvars.text[gvars.word_index]
-    print_center(word)
-    delay_string = f"delay: {str(gvars.delay)}ms"
-    print_starting(delay_string, 3, gvars.height - 3)
+    draw_UI_elements()
     refresh()
-    time.sleep(gvars.delay/1000)
-    print_center(" " * len(word))
-    print_starting(" " * len(delay_string), 3, gvars.height - 3)
 
 
 # Logging utilities
@@ -176,15 +195,15 @@ def log(
         timestamp: bool = True, 
         overwrite: bool = False, 
         headerline: bool = False):
-    #Write mode, default "a"; do not overwrite, write to end of file
+    # Write mode, default "a"; do not overwrite, write to end of file
     open_text_mode = "a"
     if overwrite:
         open_text_mode = "w"
     with open(file_name, open_text_mode) as logfile:
-        #Write line of pound signs as a header to mark out an important line, if active
+        # Write line of pound signs as a header to mark out an important line, if active
         if headerline:
             logfile.write("###############\n")
-        #Write timestamp before the log message, if active (default active)
+        # Write timestamp before the log message, if active (default active)
         if timestamp:
             logfile.write(str(f"{datetime.datetime.now()}\n"))
         logfile.write(f"{message}\n\n")
@@ -197,17 +216,22 @@ def errorlog(message: str = ""):
 @loggable_controller
 def toggle_pause() -> bool:
     if gvars.may_run.is_set():
-        gvars.may_run.clear()
-        print_in_dialog("PAUSED")
-        return False
+        return set_pause(True)
     else:
-        gvars.may_run.set()
-        clean_up_dialog("PAUSED")
-        return True
+        return set_pause(False)
 
 @loggable_controller
-def increase_delay():
-    gvars.delay += 10 if gvars.delay >= 10 else 1
+def set_pause(state: bool, dialog: bool = True) -> bool:
+    if state:
+        gvars.may_run.clear()
+        if dialog:
+            pause_dialog.show()
+        return True
+    else:
+        gvars.may_run.set()
+        if dialog:
+            pause_dialog.hide()
+        return False
 
 def get_appropriate_increment() -> int:
     if gvars.may_run.is_set():
@@ -234,9 +258,15 @@ def skip_forward():
     refresh_UI_elements()
 
 @loggable_controller
+def increase_delay():
+    gvars.delay += 10 if gvars.delay >= 10 else 1
+    refresh_UI_elements()
+
+@loggable_controller
 def decrease_delay():
     if gvars.delay > 0:
         gvars.delay -= 10 if gvars.delay > 11 else 1
+        refresh_UI_elements()
 
 @loggable_controller
 def signal_exit(force: bool = False):
@@ -246,7 +276,7 @@ def signal_exit(force: bool = False):
         gvars.may_run.clear()
 
     if not force:
-        print_in_dialog("Do you want to exit program (y/n)")
+        exit_confirmation_dialog.show()
         while True:
             try:
                 confirm = input("(y/n): ")
@@ -260,8 +290,8 @@ def signal_exit(force: bool = False):
                 break
             elif confirm == "n":
                 log("Exit cancelled")
+                exit_confirmation_dialog.hide()
                 break
-        clean_up_dialog("Do you want to exit program (y/n)")
     else:
         log("Exit forced")
         confirm = "y"
@@ -269,15 +299,12 @@ def signal_exit(force: bool = False):
     try:
         if confirm == "y":
             gvars.exit = True
+            # gvars.word_index = gvars.previous_index
             if not gvars.may_run.is_set():
-                if gvars.word_index > 0:
-                    gvars.word_index -= 1
                 gvars.may_run.set()
         elif confirm == "n":
-            if gvars.word_index > 0:
-                gvars.word_index -= 1
-            gvars.may_run.set()
-            toggle_pause()
+            gvars.word_index = gvars.previous_index
+            pause_dialog.show()
     except Exception:
         errorlog(f"Following exception raised on exit\n{str(traceback.format_exc())}")
 
@@ -320,7 +347,7 @@ def input_loop() -> str:
 def display_loop(text: str):
     log("Display loop start")
     gvars.text = [word for word in re.split(" |\n", text) if word]
-    draw_fill(" ")
+    draw_fill()
     draw_borders()
     gvars.word_index = 0
     while gvars.word_index < len(gvars.text)-1:
@@ -328,9 +355,12 @@ def display_loop(text: str):
         if gvars.exit:
             log("Display loop break")
             break
-        # wait if main thread has paused asked to pause and until it asks to unpause
+
+        # wait if the main thread has called a pause until it calls unpause
         gvars.may_run.wait()
+
         refresh_UI_elements()
+        time.sleep(gvars.delay/1000)
         gvars.word_index += 1
 
     if not gvars.exit:
