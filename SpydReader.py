@@ -28,6 +28,7 @@ import threading
 import keyboard
 import signal
 import traceback
+from typing import Self
 
 def get_decorator():
     def decorator(func):
@@ -60,54 +61,53 @@ class globalVars():
         self.word_index = None
         self.previous_index = None
 
+        self.dialogs: list[Dialog] = []
+
 gvars = globalVars()
 
 class Dialog():
     def __init__(self, message: str):
         self.message = message
 
+    def __eq__(self, other: Self):
+        if isinstance(other, self.__class__):
+            return self.message == other.message
+        else:
+            return NotImplemented
+
+    def __ne__(self, other: Self):
+        return not self.__eq__(self, other)
+
     def show(self):
+        if self not in gvars.dialogs:
+            gvars.dialogs.append(self)
+        refresh_UI_elements()
+
+    def hide(self):
+        if self in gvars.dialogs:
+            gvars.dialogs.remove(self)
+        self.clean_up()
+        refresh_UI_elements()
+
+    def draw(self):
         xcen = gvars.width // 2
         ystart = 5
         dialogbox_start = xcen - (len(self.message) // 2) - 1
 
         # TODO: handle multiple lines
-        # draw the left edge of the dialog box with box-drawing characters
-        draw_char("╔", dialogbox_start, ystart)
-        draw_char("║", dialogbox_start, ystart + 1)
-        draw_char("╚", dialogbox_start, ystart + 2)
+        draw_starting(f"╔{"═" * len(self.message)}╗", dialogbox_start, ystart)
+        draw_starting(f"║{self.message}║", dialogbox_start, ystart + 1)
+        draw_starting(f"╚{"═" * len(self.message)}╝", dialogbox_start, ystart + 2)
 
-        # draw the right edge of the dialog box with box-drawing characters
-        draw_char("╗", dialogbox_start + len(self.message) + 1, ystart)
-        draw_char("║", dialogbox_start + len(self.message) + 1, ystart + 1)
-        draw_char("╝", dialogbox_start + len(self.message) + 1, ystart + 2)
-
-        i = 1
-        for char in self.message:
-            draw_char("═", dialogbox_start + i, ystart)
-            draw_char(char, dialogbox_start + i, ystart + 1)
-            draw_char("═", dialogbox_start + i, ystart + 2)
-            i += 1
-
-        refresh()
-
-    def hide(self):
+    def clean_up(self):
         xcen = gvars.width // 2
         ystart = 5
         dialogbox_start = xcen - (len(self.message) // 2) - 1
         bg_char = " "
 
-        i = 0
-        for _ in f" {self.message} ":
-            draw_char(bg_char, dialogbox_start + i, ystart)
-            draw_char(bg_char, dialogbox_start + i, ystart + 1)
-            draw_char(bg_char, dialogbox_start + i, ystart + 2)
-            i += 1
-
-        if not gvars.may_run:
-            gvars.word_index = gvars.previous_index
-
-        draw_UI_elements()
+        draw_starting(f"{bg_char * (len(self.message) + 2)}", dialogbox_start, ystart + 1)
+        draw_starting(f"{bg_char * (len(self.message) + 2)}", dialogbox_start, ystart + 2)
+        draw_starting(f"{bg_char * (len(self.message) + 2)}", dialogbox_start, ystart)
 
 pause_dialog = Dialog("PAUSED")
 exit_confirmation_dialog = Dialog("Do you want to exit program (y/n)")
@@ -145,7 +145,7 @@ def print_center(string: str):
         draw_char(char, string_start + i, ycen)
         i += 1
 
-def print_starting(string: str, startingx: int, startingy: int):
+def draw_starting(string: str, startingx: int, startingy: int):
     i = 0
     for char in string:
         draw_char(char, startingx + i, startingy)
@@ -161,16 +161,26 @@ def draw_borders():
     draw_char("╚", 0, -1)
     draw_char("╝", -1, -1)
 
-def draw_UI_elements():
+def print_current_word():
     word = gvars.text[gvars.word_index]
-    if gvars.previous_index:
-        print_center(" " * len(gvars.text[gvars.previous_index]))
-    print_starting(" " * 15, 3, gvars.height - 3)
     print_center(word)
     gvars.previous_index = gvars.word_index
-    delay_string = f"delay: {str(gvars.delay)}ms"
-    print_starting(delay_string, 3, gvars.height - 3)
 
+def clean_up_previous_word():
+    if gvars.previous_index:
+        print_center(" " * len(gvars.text[gvars.previous_index]))
+    draw_starting(" " * 15, 3, gvars.height - 3)
+
+def print_delay():
+    delay_string = f"delay: {str(gvars.delay)}ms"
+    draw_starting(delay_string, 3, gvars.height - 3)
+
+def draw_UI_elements():
+    clean_up_previous_word()
+    print_current_word()
+    print_delay()
+    for dialog in gvars.dialogs:
+        dialog.draw()
 
 def refresh():
     # TODO: lock printing while updating frame.str
@@ -277,6 +287,7 @@ def signal_exit(force: bool = False):
 
     if not force:
         exit_confirmation_dialog.show()
+        gvars.word_index = gvars.previous_index
         while True:
             try:
                 confirm = input("(y/n): ")
@@ -299,11 +310,9 @@ def signal_exit(force: bool = False):
     try:
         if confirm == "y":
             gvars.exit = True
-            # gvars.word_index = gvars.previous_index
             if not gvars.may_run.is_set():
                 gvars.may_run.set()
         elif confirm == "n":
-            gvars.word_index = gvars.previous_index
             pause_dialog.show()
     except Exception:
         errorlog(f"Following exception raised on exit\n{str(traceback.format_exc())}")
@@ -360,8 +369,8 @@ def display_loop(text: str):
         gvars.may_run.wait()
 
         refresh_UI_elements()
-        time.sleep(gvars.delay/1000)
         gvars.word_index += 1
+        time.sleep(gvars.delay/1000)
 
     if not gvars.exit:
         signal_exit()
