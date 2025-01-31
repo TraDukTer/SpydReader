@@ -21,6 +21,9 @@
 #############################################################################
 
 import os
+# enable ANSI escape sequences
+os.system("")
+import inspect
 import time
 import datetime
 import re
@@ -30,24 +33,23 @@ import signal
 import traceback
 from typing import Self
 
-def get_decorator():
-    def decorator(func):
-        def new_func(*args, **kwargs):
-            try:
-                return func(*args, **kwargs)
-            except Exception:
-                errorlog(f"Following exception raised by controller:\n{traceback.format_exc()}")
-                return None
-        return new_func
-    return decorator
 
-loggable_controller = get_decorator()
+def loggable_controller(func):
+    def new_func(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception:
+            errorlog(f"Following exception raised by controller:\n{traceback.format_exc()}")
+            return None
+    return new_func
 
 class globalVars():
     
     def __init__(self):
         self.delay = 100 #delay in milliseconds
         self.seek_increment = 5
+
+        self.debug = True
 
         self.may_run = threading.Event()
         self.may_run.set()
@@ -175,12 +177,21 @@ def print_delay():
     delay_string = f"delay: {str(gvars.delay)}ms"
     draw_starting(delay_string, 3, gvars.height - 3)
 
+def print_calling_function_in_margins():
+    '''prints the name of the function that called the function that calls this function in top and bottom margins'''
+    draw_starting(inspect.stack()[2].function, 1, 0)
+    draw_starting(inspect.stack()[2].function, 1, gvars.height - 1)
+
 def draw_UI_elements():
     clean_up_previous_word()
     print_current_word()
     print_delay()
     for dialog in gvars.dialogs:
         dialog.draw()
+
+def clear_terminal():
+    # print the ANSI escape sequence to clear the terminal screen
+    print('\033c')
 
 def refresh():
     # TODO: lock printing while updating frame.str
@@ -189,13 +200,24 @@ def refresh():
         for char in row:
             frame_str += char
         frame_str += "\n"
-    os.system('cls')
+    # print the ANSI escape sequence to move the cursor to home (top left corner of window)
+    print('\033[H')
+
     print(frame_str)
 
+def clear_if_concurrent_refresh():
+    if gvars.previous_index == gvars.word_index:
+        clear_terminal()
+
+
 def refresh_UI_elements():
+    if gvars.debug:
+        print_calling_function_in_margins()
+    clear_if_concurrent_refresh()
     draw_UI_elements()
     refresh()
-
+    if gvars.debug:
+        draw_borders()
 
 # Logging utilities
 
@@ -381,6 +403,7 @@ def main():
     log("Program started", headerline = True)
     text = input_loop()
     log(f"Text of length {len(text)} input")
+    clear_terminal()
 
     display_thread = threading.Thread(target = display_loop, args = (text, ))
 
