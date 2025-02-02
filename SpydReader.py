@@ -218,13 +218,13 @@ def print_current_word():
 
 def clean_up_previous_word():
     '''Replace characters of the previously printed word with whitespace in center of frame'''
-    if gvars.previous_index:
+    if not gvars.previous_index == None:
         print_center(" " * len(gvars.text[gvars.previous_index]))
-    draw_starting(" " * 15, 3, gvars.height - 3)
 
 def print_delay():
     '''print current delay between words in milliseconds to bottom left corner of frame'''
     delay_string = f"delay: {str(gvars.delay)}ms"
+    draw_starting(" " * 15, 3, gvars.height - 3) # clean up previous delay string
     draw_starting(delay_string, 3, gvars.height - 3)
 
 def print_calling_function_in_margins():
