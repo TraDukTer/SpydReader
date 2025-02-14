@@ -76,6 +76,8 @@ class Dialog():
         TODO: support other dialog positions
         '''
         self.message = message
+        self.message_lines = re.split("\n", message)
+        self.message_width = max(len(line) for line in self.message_lines)
 
     def __eq__(self, other: Self):
         if isinstance(other, self.__class__):
@@ -93,7 +95,12 @@ class Dialog():
         refresh_UI_elements()
 
     def hide(self, refresh: bool = True):
-        '''Remove dialog from dialog stack, print over it with whitespace in frame and refresh UI'''
+        '''
+        Remove dialog from dialog stack, print over it with whitespace in frame and refresh UI (by default)
+
+        If refresh is False, skip refreshing UI
+        (useful for minimizing UI cycles when one dialog is switched for another)
+        '''
         if self in gvars.dialogs:
             gvars.dialogs.remove(self)
         self.clean_up()
@@ -108,25 +115,27 @@ class Dialog():
         '''
         xcen = gvars.width // 2
         ystart = 5
-        dialogbox_start = xcen - (len(self.message) // 2) - 1
+        dialogbox_start = xcen - (self.message_width // 2) - 1
 
-        # TODO: handle multiple lines
-        draw_starting(f"╔{"═" * len(self.message)}╗", dialogbox_start, ystart)
-        draw_starting(f"║{self.message}║", dialogbox_start, ystart + 1)
-        draw_starting(f"╚{"═" * len(self.message)}╝", dialogbox_start, ystart + 2)
+        draw_starting(f"╔{"═" * self.message_width}╗", dialogbox_start, ystart)
+
+        current_line = 0
+        for line in self.message_lines:
+            draw_starting(f"║{line.center(self.message_width)}║", dialogbox_start, ystart + current_line + 1)
+            current_line += 1
+        draw_starting(f"╚{"═" * self.message_width}╝", dialogbox_start, ystart + current_line + 1)
 
     def clean_up(self):
         '''Print over dialog with whitespace in frame'''
         xcen = gvars.width // 2
         ystart = 5
-        dialogbox_start = xcen - (len(self.message) // 2) - 1
+        dialogbox_start = xcen - (self.message_width // 2) - 1
         bg_char = " "
 
-        draw_starting(f"{bg_char * (len(self.message) + 2)}", dialogbox_start, ystart + 1)
-        draw_starting(f"{bg_char * (len(self.message) + 2)}", dialogbox_start, ystart + 2)
-        draw_starting(f"{bg_char * (len(self.message) + 2)}", dialogbox_start, ystart)
+        for i in range(len(self.message_lines) + 2):
+            draw_starting(f"{bg_char * (self.message_width + 2)}", dialogbox_start, ystart + i)
 
-pause_dialog = Dialog("PAUSED")
+pause_dialog = Dialog("PAUSED\npress space to unpause")
 exit_confirmation_dialog = Dialog("Do you want to exit program (y/n)")
 
 # Input validation utilities
